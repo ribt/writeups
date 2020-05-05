@@ -95,6 +95,6 @@ pause de 1.6 ms
 ``` 
 et ainsi de suite...
 
-Après le burst la longueur des pics est constant mais la pause varie de 0,5 ms à 1,7 ms. Cela diffère légèrement de ce qu'on attendait mais on nous dit bien que la télécommande a été modifiée.
+Après le burst la longueur des pics est constante mais la pause varie de 0,5 ms à 1,7 ms. Cela diffère de ce qu'on attendait mais on nous dit bien que la télécommande a été modifiée.
 
 Ne reste plus qu'à créer une variable qui va contenir les bits selon le temps de pause et qui va analyser les quatres blocs. Le programme final est disponible ici : [decode-signal.py](./decode-signal.py). Et il affiche bien le flag !
