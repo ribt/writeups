@@ -2,7 +2,7 @@
 
 Voici l'énoncé :
 
-![Vous avez trouvé une télécommande infrarouge étrange dans une décharge. Visiblement, celle-ci a été modifiée par son précédent propriétaire. Curieux, vous avez enregistré le signal avec votre carte son et une vieille photodiode. Pour l'enregistrement, voici la commande tapée : `arecord -D hw:1 -r192000 -t raw -f S16_BE -c1 ir-signal.raw`. Pouvez-vous en extraire quelque chose ?](./enonce.jpg "énoncé")
+![Vous avez trouvé une télécommande infrarouge étrange dans une décharge. Visiblement, celle-ci a été modifiée par son précédent propriétaire. Curieux, vous avez enregistré le signal avec votre carte son et une vieille photodiode. Pour l'enregistrement, voici la commande tapée : `arecord -D hw:1 -r192000 -t raw -f S16_BE -c1 ir-signal.raw`. Pouvez-vous en extraire quelque chose ?](./enonce.png "énoncé")
 
 Commençons par faire des recherches sur les télécommandes infra-rouges. On tombe rapidement sur [ce site](https://www.electroschematics.com/ir-decoder-encoder-part-1/). L'explication est très claire : la LED IR s'allume 9 ms (c'est le *burst*) pour dire qu'elle va commencer puis fait une pause de 4,5 ms avant l'envoi des données bit par bit. Le bit est défini par la distance temporelle entre deux pulsions. Une distance de 1,125 ms correspond a un `0` et une distance de 2,25 ms sorrespond à un `1`.
 
