@@ -1,4 +1,4 @@
-# NECessIR - 44 pts - 373 solves
+# NECessIR - 44 pts - 76 solves
 
 Voici l'énoncé :
 
