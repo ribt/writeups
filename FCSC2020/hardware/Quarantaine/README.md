@@ -26,7 +26,7 @@ On répète l'opération avec le bloc récurent à gauche (qui lui a deux sortie
 
 Cela revient donc simplement à croiser les fils !
 
-Le circuit est grandement simplifié mais il faut remarquer auyre chose.
+Le circuit est grandement simplifié mais il faut remarquer autre chose.
 
 Oon constate que `x0` est xoré à lui-même. Cela fait donc forcément `0` ! On peut donc compléter une bonne partie du circuit qui est constante. Ensuite, le bloc en `x39` est presque identique au bloc récurent de droite mais sans l'inverseur final, c'est donc un NXOR. `x39 NXOR x39` cela fait forcément `1` donc on peut de nouveau compléter tout ce qui est lié au fil sortant de ce bloc.
 
