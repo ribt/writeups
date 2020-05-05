@@ -2,7 +2,7 @@
 
 Voici l'énoncé :
 
-![Un de vos collègues a trouvé ce schéma de circuit électronique (circuit.pdf) dans une notice d'un produit et vous demande de l'aide pour le comprendre. La notice mentionne une fonction f appliquée à des nombres entiers, et donne un exemple f(19) = 581889079277. Votre collègue a besoin de trouver x tel que f(x) = 454088092903.](./enonce.jpg "énoncé")
+![Un de vos collègues a trouvé ce schéma de circuit électronique (circuit.pdf) dans une notice d'un produit et vous demande de l'aide pour le comprendre. La notice mentionne une fonction f appliquée à des nombres entiers, et donne un exemple f(19) = 581889079277. Votre collègue a besoin de trouver x tel que f(x) = 454088092903.](./enonce.png "énoncé")
 
 Je vais utiliser un outil en ligne pour convertir le PDF en JPG et je vais l'analyser avec... GIMP pour pouvoir faire des points de couleur.
 
