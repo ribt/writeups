@@ -10,7 +10,7 @@ Essayons donc d'ouvrir le fichier. On ouvre Audacity et dans le menu `Fichier` o
 
 On obtient alors un signal composé de 4 *blocs*. En zoomant sur le début du premier bloc, on voit qu'il commence bien par un *burst* puis est constitué de pics espacés par une distance non constante.
 
-![signal audacity](./audacity.jpg "Début du signal")
+![signal audacity](./audacity.png "Début du signal")
 
 Exportons le fichier en `.wav` pour l'analyser en Python.
 
