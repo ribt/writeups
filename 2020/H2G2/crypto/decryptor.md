@@ -11,7 +11,7 @@ Nous avons une clé RSA publique et un nombre à décrypter. La clé fait 2048 b
 
 Il faut probablement chercher du côté du serveur que l'on nous fournit et qui déchiffre tous les messages que l'on veut sauf notre numéro `secret` qui correspond au flag chiffré. Essayons de voir comment nous pourront exploiter cela. Le serveur demande un chiffre et ne réagit pas aux lettres ni aux nombres à virgule... mais il répond si on lui passe un nombre négatif !
 
-Pour comprendre la suite, il est nécessaire de connaître la notion de *modulo* (reste dans la division euclidienne) et le [fonctionnement du RSA](https://fr.wikipedia.org/wiki/Chiffrement_RSA#Fonctionnement_d%C3%A9taill%C3%A9). Pour rappel, la clé publique contient les nombres `n` et `e`. Si `M` est le messages en clair et `C` le message chiffré, nous faisons ce calcul pour chiffrer un message :
+Pour comprendre la suite, il est nécessaire de connaître la notion de *modulo* (reste dans la division euclidienne) et le [fonctionnement du RSA](https://fr.wikipedia.org/wiki/Chiffrement_RSA#Fonctionnement_d%C3%A9taill%C3%A9). Pour rappel, la clé publique contient les nombres `n` et `e`. Si `M` est le message en clair et `C` le message chiffré, nous faisons ce calcul pour chiffrer un message :
 
 ![M^e = C mod n](https://render.githubusercontent.com/render/math?math=M^e%20\equiv%20C%20\mod%20n)
 

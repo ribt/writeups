@@ -15,7 +15,7 @@ Hack2G2 est une association montée par les étudiants de l'ENSIBS et de l'IUT i
 
 ### Crypto
 
-- [Le SAGE doré - 20 pts](./misc/sage1.md)
+- [Le SAGE doré - 20 pts](./crypto/sage1.md)
 - [Decryptor - 50 pts](./crypto/decryptor.md)
 
 ### Web

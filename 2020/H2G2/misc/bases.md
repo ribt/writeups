@@ -10,7 +10,7 @@ Mon premier réflexe est d'utiliser [CyberChef](https://gchq.github.io/CyberChef
 
 La description semble être en base 3, on la convertit en entier en respectant les groupes puis on décode comme étant de l'ASCII : `J'aimerais savoir comment faire une bonne puree`.
 
-Maintenant `nc salut.interiut.ctf 1337` pour discuter avec le serveur. Il envoie un texte encodé de façon similaire au titre (en binbaire) puis si on envoie la bonne réponse, il envoie un texte en base 3 puis en base 4... Il va falloir automatiser le décodage. En tatonnant on voit que le dernier challenge est de la base 31 puis le flag est envoyé.
+Maintenant `nc salut.interiut.ctf 1337` pour discuter avec le serveur. Il envoie un texte encodé de façon similaire au titre (en binaire) puis si on envoie la bonne réponse, il envoie un texte en base 3 puis en base 4... Il va falloir automatiser le décodage. En tâtonnant on voit que le dernier challenge est de la base 31 puis le flag est envoyé.
 
 ```python
 from pwn import remote

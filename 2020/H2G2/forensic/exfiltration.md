@@ -6,11 +6,11 @@ Ce challenge est décomposé en 3 étapes. Le fichier fourni est une capture ré
 
 > Le SOC de Random Corp a detecte une  activite suspecte sur le reseau. Apparament des donnees auraient ete  exfiltres depuis le poste de Brian. Apres interrogation pas la DSI,  Brian a avoue avoir execute volontairement un programme malicieux. Retrouvez le nom du fichier malveillant qui a ete telecharge. Format du flag : H2G2{nom_du_fichier.extension}
 
-J'ouvre le fichier avec WireShark et j'attends plusieurs minutes que ma machine ait fini de vrombir. Je n'ai jamais eu à manipuler un PCAPNG aussi gros (plus de 24h d'enregistrement et 1,3 millions de trames) ! Il va donc falloir être méthodique. Je décide d'affiche d'abord les requêtes DNS à la recherche d'un domaine douteux. L'application du filtre prend plusieurs longues secondes, il n'est pas concevable de travailler trop longtemps avec ce gros fichier. Les premières requêtes demandent l'IP de `linkedin.com`, rien de suspect. Ensuite une requête apparaît pour `monkey.bzh`. Les concepteurs du challenges sont bretons, et ce TLD est assez rare. De plus la résolution ce nom de domaine donne une adresse sur le même réseau local que l'ordinateur de la victime.
+J'ouvre le fichier avec WireShark et j'attends plusieurs minutes que ma machine ait fini de vrombir. Je n'ai jamais eu à manipuler un PCAPNG aussi gros (plus de 24h d'enregistrement et 1,3 millions de trames) ! Il va donc falloir être méthodique. Je décide d'affiche d'abord les requêtes DNS à la recherche d'un domaine douteux. L'application du filtre prend plusieurs longues secondes, il n'est pas concevable de travailler trop longtemps avec ce gros fichier. Les premières requêtes demandent l'IP de `linkedin.com`, rien de suspect. Ensuite une requête apparaît pour `monkey.bzh`. Les concepteurs du challenge sont bretons, et ce TLD est assez rare. De plus la résolution ce nom de domaine donne une adresse sur le même réseau local que l'ordinateur de la victime.
 
 Ensuite il y a de très nombreuses requêtes du style `U3RhcnRpbmcgZXhmaWx0cmF0aW9uIG9m.IHRoZSBmaWxlIC9ob21lL0JyaWFuLy5z.ZWNyZXQvQ29uZmlkZW50aWFsLnBkZg==.monkey.bzh`, nous avons probablement trouvé par quel canal les fichiers étaient exfiltrés !
 
-J'affiche toutes le requêtes entre `172.25.0.3` (l'adresse de la victime) et `172.25.0.2` (l'adresse de monkey.bzh). On voit une requêtes HTTP claire : `GET /the_game.py`. On affiche la réponse du serveur et on obtient le fichier Python suivant : 
+J'affiche toutes les requêtes entre `172.25.0.3` (l'adresse de la victime) et `172.25.0.2` (l'adresse de monkey.bzh). On voit une requête HTTP claire : `GET /the_game.py`. On affiche la réponse du serveur et on obtient le fichier Python suivant : 
 
 ```python
 #!/usr/bin/env python3
@@ -84,11 +84,11 @@ Le doute n'est plus permis, Brian exfiltre ses fichiers vers `monkey.bzh`. Je sa
 
 > Maintenant que vous avez retrouve le  programme malveillant, le SOC vous demande de retrouver les noms des  fichiers qui ont ete exfiltres. Format du flag :  H2G2{fichier_exfiltre1.extension,fichier_exfiltre2.extension,...}
 
-Fort heureusement, le fichier Python n'est pas obfusqué. Néanmoins je décide d'essayer de décoder les données exfiltreés directement. La première requête est `U3RhcnRpbmcgZXhmaWx0cmF0aW9uIG9m.IHRoZSBmaWxlIC9ob21lL0JyaWFuLy5z.ZWNyZXQvQ29uZmlkZW50aWFsLnBkZg==.monkey.bz`. Ce qui correspond à `Starting exfiltration of the file /home/Brian/.secret/Confidential.pdf`. Comme on le voit dans le code source les infomations de début d'exfiltration ne sont pas chiffreés. 
+Fort heureusement, le fichier Python n'est pas obfusqué. Néanmoins je décide d'essayer de décoder les données exfiltreés directement. La première requête est `U3RhcnRpbmcgZXhmaWx0cmF0aW9uIG9m.IHRoZSBmaWxlIC9ob21lL0JyaWFuLy5z.ZWNyZXQvQ29uZmlkZW50aWFsLnBkZg==.monkey.bz`. Ce qui correspond à `Starting exfiltration of the file /home/Brian/.secret/Confidential.pdf`. Comme on le voit dans le code source les informations de début d'exfiltration ne sont pas chiffrées. 
 
 Je commence à écrire un fichier Python en utilisant Scapy pour parser mon nouveau fichier de 21 Mo. Le parsage du fichier est beaucoup trop long. Je ne vais pas écrire le bon code du 1er coup, il faudra sans doute exécuter plusieurs tests et je ne vais pas patienter plusieurs minutes à chaque fois.
 
-Je me dis que pour un tel challenge il serait pertinent d'apprendre à utiliser `tshark`, une sort de WireShark en ligne de commande beaucoup plus rapide et efficace. Après lecture de la [documentation](https://www.wireshark.org/docs/man-pages/tshark.html), j'en arrive à la commande suivante : 
+Je me dis que pour un tel challenge il serait pertinent d'apprendre à utiliser `tshark`, une sorte de WireShark en ligne de commande beaucoup plus rapide et efficace. Après lecture de la [documentation](https://www.wireshark.org/docs/man-pages/tshark.html), j'en arrive à la commande suivante : 
 
 ```shell
 tshark -r exfiltration.pcapng -j DNS -T fields -e dns.qry.name > queries.txt
@@ -189,7 +189,7 @@ The file /home/Brian/.secret/Confidential.pdf has been extracted
 18 🙉🙉🙉🙉🙊🙊🙉🙉🙊🙊🙈🙊🙊🙉🙊🙊🙈🙊🙊🙉🙉🙊🙊🙈🙉🙉🙉🙊🙊
  ```
 
-256 possibilités c'est clairement une combinaison de smiley pour chaque octet possible. Nous avons des smileys de singe et absolument pas les points comme décrits dans le fichier `the_game.py` obtenu précédemment. J'en déduis que le code n'est pas le même et je commence à créer une table de correspondance et à faire du guessing à partir des particularités des fichiers (un PDF commence forcément par `0x25504446` et un JPG par `0xFFD8FF`). Il y a trois smileys de signe différents, je leur associe une lettre pour être traité plus facilement (l'IDLE Python ne sait pas afficher de tels smileys). En faisant des recherches sur les particularité du format JPEG j'en arrive à cette table de correspondance :
+256 possibilités c'est clairement une combinaison de smiley pour chaque octet possible. Nous avons des smileys de singe et absolument pas les points comme décrits dans le fichier `the_game.py` obtenu précédemment. J'en déduis que le code n'est pas le même et je commence à créer une table de correspondance et à faire du guessing à partir des particularités des fichiers (un PDF commence forcément par `0x25504446` et un JPG par `0xFFD8FF`). Il y a trois smileys de signe différents, je leur associe une lettre pour être traité plus facilement (l'IDLE Python ne sait pas afficher de tels smileys). En faisant des recherches sur les particularités du format JPEG j'en arrive à cette table de correspondance :
 
 ```
 0x00 : BB
