@@ -1,3 +1,9 @@
 Vous trouverez ici mes write-ups (en français) pour différents CTFS :
 
-* [FCSC 2020](./FCSC2020/)
+## 2020
+
+* [FCSC](./2020/FCSC/)
+
+* [Hack2G2](./2020/H2G2/)
+
+  
