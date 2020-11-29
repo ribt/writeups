@@ -135,7 +135,7 @@ flag : H2G2{Confidential.pdf,Confidential.jpg,flag.txt}
 
 > Le SOC vous indique que les fichiers ont ete supprimes et que aucune backup n'a ete faite. Retrouvez le contenu des fichiers.
 
-Cette partie est clairement la plus intéressant, elle m'a pris la tête plusieurs heures !
+Cette partie est clairement la plus intéressante, elle m'a pris la tête plusieurs heures !
 
 Premièrement je vais lister tous les payloads différents envoyés pendant l'exfiltration. J'obtiens ceci pour `Confidentiel.pdf` :
 
