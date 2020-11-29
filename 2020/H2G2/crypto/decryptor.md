@@ -27,7 +27,7 @@ Le reste dans la division euclidienne ne peut pas être négatif donc le serveur
 
 Il suffit donc d'envoyer l'opposé de notre nombre secret et on pourra déduire le flag car :
 
-![](https://render.githubusercontent.com/render/math?math=\begin{align}(-C)^d%20\equiv%20-(C^d)%20\mod%20n%20\nonumber%20\\(-C)^d%20\equiv%20-M%20\mod%20n%20\nonumber%20\\(-C)^d%20\equiv%20n%20-%20M%20\mod%20n%20\nonumber%20\\\end{align})
+![](https://render.githubusercontent.com/render/math?math=%5Cbegin%7Balign%7D%28-C%29%5Ed%20%5Cequiv%20-%28C%5Ed%29%20%5Cmod%20n%20%5Cnonumber%20%5C%5C%28-C%29%5Ed%20%5Cequiv%20-M%20%5Cmod%20n%20%5Cnonumber%20%5C%5C%28-C%29%5Ed%20%5Cequiv%20n%20-%20M%20%5Cmod%20n%20%5Cnonumber%20%5C%5C%5Cend%7Balign%7D)
 
 Si on envoie `-secret`, le serveur nous répond `n - flag` !
 
