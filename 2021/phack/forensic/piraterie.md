@@ -1,10 +1,10 @@
 # Piraterie
 
-## Ã‰pisode 1 - 512 pts
+## Épisode 1 - 512 pts
 
-> Vous venez d'Ãªtre embauchÃ© en tant  qu'analyse sÃ©curitÃ© dans votre nouvelle entreprise. Encore Ã©mu par cette nouvelle, on vous affecte Ã  votre premiÃ¨re mission. 
+> Vous venez d'être embauché en tant  qu'analyse sécurité dans votre nouvelle entreprise. Encore ému par cette nouvelle, on vous affecte à votre première mission. 
 >
->  Votre client du jour s'est fait piratÃ©. Heureusement, il a eut la  prÃ©sence d'esprit de ne pas Ã©teindre la machine compromise et vous  fournit un dump mÃ©moire.
+>  Votre client du jour s'est fait piraté. Heureusement, il a eut la  présence d'esprit de ne pas éteindre la machine compromise et vous  fournit un dump mémoire.
 >
 >  Essayez de trouver ce qu'a pu faire le pirate.
 >
@@ -12,7 +12,7 @@
 >
 >  Artiste : `@Eagleslam`
 
-RÃ¨gle nÂ°1 : quel que soit le challenge, toujours commencer pas un strings :
+Règle n°1 : quel que soit le challenge, toujours commencer pas un strings :
 
 ```
 $ strings dump.raw | grep PHACK
@@ -21,16 +21,16 @@ PHACK_Windows7.pxe
 "PHACK{STEP_1-IC4nD0Wh4TuD0}"
 ```
 
-Et le dÃ©fi est classÃ© *hard*...
+Et le défi est classé *hard*...
 
 
 
-## Ã‰pisode 2 - 512 pts
+## Épisode 2 - 512 pts
 
-> Il semble que le pirate ait rÃ©ussi Ã  rÃ©cupÃ©rer des informations confidentielles qui Ã©taient visibles sur le bureau.
->  Validez cette hypothÃ¨se et retrouvez cette information.
+> Il semble que le pirate ait réussi à récupérer des informations confidentielles qui étaient visibles sur le bureau.
+>  Validez cette hypothèse et retrouvez cette information.
 >
->  MÃªme fichier que l'Ã©pisode 1 (https://bit.ly/3sOcnRS) 
+>  Même fichier que l'épisode 1 (https://bit.ly/3sOcnRS) 
 >
 >  Artiste : `@Eagleslam`
 
@@ -54,7 +54,7 @@ INFO    : volatility.debug    : Determining profile based on KDBG search...
      Image local date and time : 2021-02-21 00:46:58 +0100
 ```
 
-On va choisir le 2e profile proposÃ©, celui-ci fonctionne souvent pour des machines sous Windows 7. Pour vÃ©rifier que c'est le bon profile on peut par exemple chercher l'historique des commandes `cmd` :
+On va choisir le 2e profile proposé, celui-ci fonctionne souvent pour des machines sous Windows 7. Pour vérifier que c'est le bon profile on peut par exemple chercher l'historique des commandes `cmd` :
 
 ```
 $ volatility -f dump.raw --profile=Win7SP0x86 cmdscan
@@ -112,7 +112,7 @@ Cmd #0 @ 0x326e98: C:\Users\Mes-vms.fr\Downloads\winpmem_mini_x86.exe C:\Users\M
 [...]
 ```
 
-On retrouve le flag de l'Ã©tape 1 et on voit qu'on a le bon profile et que la personne a volontairement tÃ©lÃ©chagÃ© et exÃ©cutÃ© un script Powershell. LanÃ§ons un scan de tous les fichiers que l'on va stocker dans un fichier texte car il va beaucoup nous servir :
+On retrouve le flag de l'étape 1 et on voit qu'on a le bon profile et que la personne a volontairement téléchagé et exécuté un script Powershell. Lançons un scan de tous les fichiers que l'on va stocker dans un fichier texte car il va beaucoup nous servir :
 
 ```
 $ volatility -f dump.raw --profile=Win7SP0x86 filescan > files.txt
@@ -151,9 +151,9 @@ $ grep Desktop files.txt
 0x000000007fe2f5f0      8      0 R--rwd \Device\HarddiskVolume1\Windows\Web\Wallpaper\Scenes\Desktop.ini
 ```
 
-Aucun fichier particulier et pourtant "des informations confidentielles Ã©taient visibles sur le bureau" ðŸ¤”
+Aucun fichier particulier et pourtant "des informations confidentielles étaient visibles sur le bureau" :thinking:
 
-Cherchons le fond d'Ã©cran !
+Cherchons le fond d'écran !
 
 ```
 $ grep -i wallpaper files.txt 
@@ -165,7 +165,7 @@ $ grep -i wallpaper files.txt
 0x000000007fe2f5f0      8      0 R--rwd \Device\HarddiskVolume1\Windows\Web\Wallpaper\Scenes\Desktop.ini
 ```
 
-On rÃ©cupÃ¨re le `.jpg` :
+On récupère le `.jpg` :
 
 ```
 $ volatility -f dump.raw --profile=Win7SP0x86 dumpfiles -Q 0x000000007d10b440 -n -D ./
@@ -175,22 +175,22 @@ DataSectionObject 0x7d10b440   None   \Device\HarddiskVolume1\Users\Mes-vms.fr\A
 
 Bingo !
 
-![le fond d'Ã©cran avec le flag](./TranscodedWallpaper.jpg)
+![le fond d'écran avec le flag](./TranscodedWallpaper.jpg)
 
 
 
-## Ã‰pisode 3
+## Épisode 3
 
-> Sachant ce qui a Ã©tÃ© dÃ©robÃ©, il faut maintenant retrouver le malfrat. 
->  Retracez son parcours et retrouvez l'IP ainsi que le port de connexion qu'il a utilisÃ© pendant son attaque. 
+> Sachant ce qui a été dérobé, il faut maintenant retrouver le malfrat. 
+>  Retracez son parcours et retrouvez l'IP ainsi que le port de connexion qu'il a utilisé pendant son attaque. 
 >  
->  Le flag est de la forme PHACK{...} avec le rÃ©sultat de `IP:PORT` encodÃ© en base 64. 
+>  Le flag est de la forme PHACK{...} avec le résultat de `IP:PORT` encodé en base 64. 
 >  
->  MÃªme fichier que l'Ã©pisode 1 & 2 (https://bit.ly/3sOcnRS) 
+>  Même fichier que l'épisode 1 & 2 (https://bit.ly/3sOcnRS) 
 >
 >  Artiste : `@Eagleslam`
 
-Aucune hÃ©sitation sur la commande Ã  effectuer :
+Aucune hésitation sur la commande à effectuer :
 
  ```
 $ volatility -f dump.raw --profile=Win7SP0x86 netscan
@@ -204,10 +204,10 @@ Offset(P)          Proto    Local Address                  Foreign Address      
 [...]
  ```
 
-Une seule connexion est Ã©tablie par un `powershell.exe` : `185.13.37.99:1337`. Le flag est donc `PHACK{MTg1LjEzLjM3Ljk5OjEzMzc=}`.
+Une seule connexion est établie par un `powershell.exe` : `185.13.37.99:1337`. Le flag est donc `PHACK{MTg1LjEzLjM3Ljk5OjEzMzc=}`.
 
 
 
 ### Conclusion
 
-Un peu dÃ©Ã§u par ce challenge extrÃªmement simple oÃ¹ il n'a fallu utilisÃ© que les trois commandes les plus courantes de `volatility` sans avoir Ã  investiguer du tout. C'Ã©tait sans conteste la plus grosse manne de points Ã  gagner facilement.
+Un peu déçu par ce challenge extrêmement simple oÃ¹ il n'a fallu utilisé que les trois commandes les plus courantes de `volatility` sans avoir à investiguer du tout. C'était sans conteste la plus grosse manne de points à gagner facilement.
