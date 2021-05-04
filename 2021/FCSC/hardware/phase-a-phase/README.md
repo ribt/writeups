@@ -1,8 +1,12 @@
 # Phase à phase - 50 pts
 
->  Au cours de votre voyage à Manchester, vous avez capturé un signal, échantillonné à 2 millions d'échantillons par seconde. Décodez-le ! SHA256(`challenge.iq`) = `640ec3956cf9f89c398ffa39d1eb55d68cc685989ca8fed249f0d44ed636c88a`.
+>  Au cours de votre voyage à Manchester, vous avez capturé un signal, échantillonné à 2 millions d'échantillons par seconde. 
 >
-> [challenge.iq](challenge.iq)
+>  Décodez-le !
+>
+>   SHA256(`challenge.iq`) = `640ec3956cf9f89c398ffa39d1eb55d68cc685989ca8fed249f0d44ed636c88a`.
+>
+>  [challenge.iq](challenge.iq)
 
 Ouvrons le signal avec Python et regardons sa phase :
 

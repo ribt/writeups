@@ -73,7 +73,7 @@ def parse(img):
 
 Cette fonction trouve la dimension du labyrinthe (je n'avais pas vu que c'était fourni dans l'énoncé :confused:), les coordonnées de l'entrée et de la sortie et la position de tous les murs. Voilà ce que ça donne pour l'image exemple :
 
-```json
+```python
 {'dimension': (8, 8),
  'entrée': (2, 7),
  'sortie': (3, 0),

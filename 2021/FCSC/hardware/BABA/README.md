@@ -1,6 +1,12 @@
 # B.A. BA - 30 pts
 
-> Votre ami Walrus s'initie à la radio et a découvert une nouvelle façon de communiquer. Il vous a donné un signal échantillonné à 200kHz que vous devez décoder. `challenge.iq` (9.5MB) : https://files.france-cybersecurity-challenge.fr/dl/ba_ba/challenge.iq.7z SHA256(`challenge.iq`) = `382ecbce7f9bd1e38ea99f626d3f56a8140ddf3210e12db597eabbd081656fde`. Le flag est au format `FCSC{<flag en lower case>}`.
+> Votre ami Walrus s'initie à la radio et a découvert une nouvelle façon de communiquer. Il vous a donné un signal échantillonné à 200kHz que vous devez décoder.
+>
+> `challenge.iq` (9.5MB) : https://files.france-cybersecurity-challenge.fr/dl/ba_ba/challenge.iq.7z
+>
+> SHA256(`challenge.iq`) = `382ecbce7f9bd1e38ea99f626d3f56a8140ddf3210e12db597eabbd081656fde`.
+>
+> Le flag est au format `FCSC{<flag en lower case>}`.
 
 Pour commencer, ouvrons le fichier avec [Gqrx](https://github.com/csete/gqrx) pour voir la tête du signal et essayer de le décoder. À l'oreille cela ressemble à du morse. Le signal est vraiment long, on ne va quand même pas le décoder à la main !
 
