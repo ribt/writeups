@@ -8,7 +8,7 @@ Le FCSC est organisé tous les ans par l'ANSSI pour sélectionner les membres qu
 
 ### misc
 
-- [Privesc Me (1) - Warmup - 25 pts](./misc/privesec_me1/README.md))
+- [Privesc Me (1) - Warmup - 25 pts](./misc/privesec_me1/README.md)
 - [My Whois - 25 pts](./misc/whois/README.md)
 -  [Ventriglisse - 148 pts](./misc/ventriglisse/README.md)
 
