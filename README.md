@@ -12,3 +12,7 @@ Vous trouverez ici mes write-ups (généralement en français) pour différents 
 - [P'Hack CTF](./2021/phack/README.md)
 - [FCSC](./2021/FCSC/README.md)
 - [ECW](./2021/ECW/README.md) (🇬🇧)
+
+## 2022
+
+- [FCSC](./2022/FCSC/README.md)
