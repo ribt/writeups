@@ -14,9 +14,9 @@ Fichier :
 
 - [capture.cap](./capture.cap)
 
-### Découverte
+### Essais infructueux
 
-Le fichier est un peu long (72000 paquets pour 7 minutes d’enregistrement). Je l'ouvre dans Wireshark et je commence par filtrer seulement les requêtes DNS pour chercher un domaine louche. Je vois `a.espncdn.com`. Pour mois `espn` est un diminutif de `espion` donc je filtre les discussion avec cet hôte. C'est du HTTP, j'arrive à extraire un PNG... Et c'est le logo d'un média sportif x)
+Le fichier est un peu long (72 000 paquets pour 7 minutes d’enregistrement). Je l'ouvre dans Wireshark et je commence par filtrer seulement les requêtes DNS pour chercher un domaine louche. Je vois `a.espncdn.com`. Pour moi, `espn` est un diminutif de `espion` donc je filtre les discussion avec cet hôte. C'est du HTTP, j'arrive à extraire un PNG... Et c'est le logo d'un média sportif x)
 
 À côté de ça, des requêtes DNS AAAA vers 4 domaines sans aucun sens tels que `ltclalbmngxxfnk` ont lieu mais c'est beaucoup trop peu pour exfiltrer des données.
 

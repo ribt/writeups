@@ -192,7 +192,7 @@ Ensuite je me balade dans les fichiers de config. Je vois un dossier `/etc/ssh` 
 
 #### Résolution
 
-Encore une fois je me résigne à faire un gros grep à la racine (avec le nom du seul utilisateur qui a un dossier dans `/home/`) :
+Je me résigne à faire un gros grep à la racine (avec le nom du seul utilisateur qui a un dossier dans `/home/`) :
 
 ```
 $ sudo grep "obob" -r *
@@ -248,5 +248,6 @@ Je tente désespérément un énorme grep sur tous les fichiers àa la recherche
 $ sudo grep "\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}" -r * | grep -v "Fichier binaire" | grep -v "127.0" | grep -v "192.168" | grep -v ":\#" | more
 ```
 
-Je regarde toutes les lignes mais rien à signaler...
+Je regarde toutes les lignes une par une mais rien à signaler...
 
+Edit : l'adresse à trouver commence par "192.168" et se trouve dans le fichier `auth.log`... qui a été supprimé ! Je n'y étais donc pas du tout :slightly_smiling_face: Vous pouvez lire [cet autre WU](https://github.com/0xE0L/FCSC2022-WUs/blob/main/Forensics/Echec%20OP%20(all%20parts)/solve/WriteUp.pdf) pour plus d'informations.

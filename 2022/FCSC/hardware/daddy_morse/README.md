@@ -125,9 +125,9 @@ Le serveur répond `Error: invalid`... Le worflow GNU Radio Companion pour compa
 
 ![diff](diff.png)
 
+Mon signal pour "HELLO" est en haut et `signal.iq` est en bas.
 
-
-On voit tout d'abord que ma composante complexe vaut toujours `0`... Ensuite, mon espace entre deux lettres est trop long. Je comprends que j'additionne 1 ms plus 5 ms donc je mets 6 ms entre les lettres au lieu de 5 ms. Je corrige cela également pour le délai entre les mots et voici le code final :
+On voit tout d'abord que ma composante complexe (ici en rouge) vaut toujours `0`... Ensuite, mon espace entre deux lettres est trop long. Je comprends que j'additionne 1 ms plus 5 ms donc je mets 6 ms entre les lettres au lieu de 5 ms. Je corrige cela également pour le délai entre les mots et voici le code final :
 
 ```python
 from pwn import *
@@ -188,8 +188,8 @@ conn.sendline(encoded_signal)
 print(conn.recvline())
 ```
 
+Le serveur nous répond alors `Well done: FCSC{e8b4cad7d00ca921eb12824935eea3b919e5748264fe1c057eef4de6825ad06c}`
 
 
 
-
-La suite est [ici](../mommy_morse/README.md).
+Un 2e challenge dans la continuité de celui-ci est dispo [ici](../mommy_morse/README.md).

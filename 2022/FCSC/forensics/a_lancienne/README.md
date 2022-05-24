@@ -10,7 +10,7 @@ fichier : [cap](./cap)
 
 #### Découverte
 
-Le fichier ouvert dans WIreshark ne laisse aucun doute : c'est de l'exfiltration DNS.
+Le fichier ouvert dans Wireshark ne laisse aucun doute : c'est de l'exfiltration DNS.
 
 Extrayons les requêtes :
 
@@ -126,3 +126,7 @@ On reconnaît la signature de début et de fin du PNG. Si on vire les 21 premier
 ![logo ANSSI](file3_crop.png)
 
 Malheureusement je n'ai réussi à rien récupérer autre chose que ce logo...
+
+
+
+Edit : Comme l'énoncé le laissait entrevoir, il fallait **décompresser** (les fichiers). En plus j'avais bien vu le `gzip compressed data` en faisant un `file` sur les fichiers mais c'était pour moi un faux positif car des méta-données étaient ajouées en début de fichier et étaient interprétées à tort comme un *magic number* gzip. Comme expliqué dans [ce WU](https://gitlab.com/ctfun/ctf-writeups/-/blob/master/fcsc2022/forensic/%C3%80%20l'ancienne/alancienne.md) il fallait renommer les fichiers avec `.gz` pour pouvoir les ouvrir et on récupérait 2 autres images lié au FCSC et un fichier Word (file4) contenant le flag : `FCSC{18e955473d2e12feea922df7e1f578d27ffe977e7fa5b6f066f7f145e2543a92}`.

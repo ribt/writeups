@@ -14,7 +14,7 @@ Fichier :
 
 ### Découverte
 
-Le fichier PDF contient un circuit électronique avec 63 entrées et 63 sorties. Cela paraît beaucoup mais en réalité c'est un pettern qui se répète comme on peut le voir ici :
+Le fichier PDF contient un circuit électronique avec 63 entrées et 63 sorties. Cela paraît beaucoup mais en réalité c'est un pattern qui se répète comme on peut le voir ici :
 
 ![extrait](extrait.png)
 
@@ -30,7 +30,7 @@ y2 = (x0 & !x1) ^ x2
 y62 = (x60 & !x61) ^ x62
 ```
 
-
+(`&` représentant un ET binaire, `!` une NON et `^` un OU EXCLUSIF)
 
 
 
@@ -53,7 +53,7 @@ def f(n):
     return int("".join(str(b) for b in y[::-1]), 2)
 ```
 
-Maintenant fait un `for n in range(2**64)` et on attend de trouver une solution qui fonctionne... Mais on se rend rapidement compte qu'il va falloir attend beaucoup trop longtemps.
+Maintenant, on fait un `for n in range(2**64)` et on attend de trouver une solution qui fonctionne... Mais on se rend rapidement compte qu'il va falloir attend beaucoup trop longtemps.
 
 J'ai essayé de résoudre le problème à la main. Si par exemple on sait que `(x0 & !x1) ^ x2 = 0` et `(x1 & !x2) ^ x3 = 1`, cela signifie que `x2 = !(x0 & !x1)` et `x3 = (x1 & !x2)` mais cela paraît très fastidieux... je dois pouvoir faire calculer cela à mon PC.
 
@@ -84,3 +84,4 @@ for i in range(63):
 print(flag)
 ```
 
+flag : `FCSC{7364529468137835333}`

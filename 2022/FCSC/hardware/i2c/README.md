@@ -26,7 +26,7 @@ Il semblerait que l'Arduino discute avec la mémoire EEPROM en utilisant le prot
 
 ![screen](gtkwave.png)
 
-On remarque au passage qu'il y a un grand vide au début et à la fin. L'enregistrement est très long par rapport au moment qui contient les données.
+On voit effectivement un signal d'horloge et des données. On remarque au passage qu'il y a un grand vide au début et à la fin. L'enregistrement est très long par rapport au moment qui contient les données.
 
 ### Résolution
 
@@ -85,7 +85,7 @@ i2c-1: 0
 [...]
 ```
 
-Ça a l'air de bien fonctionner. L'adresse vaut toujours `68` puis on écrit un chiffre compteur qui incrémente à chaque fois suivi d'un deuxième chiffre qui ressemble bien à un caractère ASCII.
+Ça a l'air de bien fonctionner. L'adresse vaut toujours `68` puis on écrit un chiffre compteur qui incrémente à chaque fois suivi d'un deuxième chiffre qui ressemble bien à un caractère ASCII encodé en hexadécimal.
 
 Reste plus qu'à me la péter un peu avec ma maîtrise du shell :
 

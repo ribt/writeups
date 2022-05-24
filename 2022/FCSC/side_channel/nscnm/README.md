@@ -18,7 +18,7 @@ Fichier : [nscnm.py](./nscnm.py)
 
 ### Théorie 
 
-Avant de commencer il faut être au point [le chiffrement RSA](https://fr.wikipedia.org/wiki/Chiffrement_RSA) mais si ça n'est pas le cas, on peut toujours deviner ce fonctionnement grâce au code fourni :
+Avant de commencer il faut être au point [le chiffrement RSA](https://fr.wikipedia.org/wiki/Chiffrement_RSA) mais si ça n'est pas le cas, on peut toujours deviner son fonctionnement grâce au code fourni :
 
 ```python
 from Crypto.Util.number import getStrongPrime, bytes_to_long
@@ -68,9 +68,9 @@ if __name__ == "__main__":
 
 
 
-La clé privée fait 1024 bits et on a le droit de poser 1025 questions au serveur, cela rappelle [un challenge misc](../../misc/guessme2/README.md)...
+La clé privée fait 1024 bits et on a le droit de poser 1025 questions au serveur, cela rappelle [un certain challenge misc](../../misc/guessme2/README.md)...
 
-Dans le chiffrement RSA on a toujours besoin de mettre un nombre *exposant* un autre *modulo* un troisième. Tous ces nombres étant gigantesques (ordre de grandeur : $$ 2^{1024} $$) on a du inventer un moyen de faire cette opération beaucoup plus efficace que la méthode naïve : c'est [l'exponentiation modulaire](https://fr.wikipedia.org/wiki/Exponentiation_modulaire). Il se trouve que par hasard j'ai eu l'occasion de faire un oral sur le sujet cette année alors voici quelques slides pour aider à comprendre le principe :
+Dans le chiffrement RSA on a toujours besoin de mettre un nombre *exposant* un autre *modulo* un troisième. Tous ces nombres étant gigantesques (ordre de grandeur : $$ 2^{1024} $$) on a du trouver un moyen de faire cette opération beaucoup plus efficace que la méthode naïve : c'est [l'exponentiation modulaire](https://fr.wikipedia.org/wiki/Exponentiation_modulaire). Il se trouve que par hasard j'ai eu l'occasion de faire un oral sur le sujet cette année alors voici quelques slides pour aider à comprendre le principe :
 
 ![slide1](slide1.png)
 
@@ -130,3 +130,6 @@ m = pow(c, d, n)
 print(bytes.fromhex(hex(m)[2:]).decode())
 ```
 
+Notre programme dessine une jolie série de 0 et 1 dans le terminal puis affiche le flag : `FCSC{c78e6725a5056d13b63cc4e8a98f6f6f7c6c091ecf0523377035d8faf203b20d}`
+
+Le [challenge suivant](../nscns/README.md) est très similaire.

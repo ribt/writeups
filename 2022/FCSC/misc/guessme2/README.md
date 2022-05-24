@@ -102,7 +102,7 @@ Mais le problème est que, comme le serveur ment une fois, mon nombre diffère d
 
 
 
-Il faudrait que ma 130e question soit *Quel est le premier bit de la position de mon erreur encodée en binaire ?*... En se rappelant que ces 7 questions doivent être "universelles" car je ne connaîtrais pas le nombre que je pense être le nombre secret au moment de les poser. En fait il me faudrait 7 *patterns* pour lesquels je vérifierais si les bits désignés sont identiques ou non entre ma version et celle du serveur. 7 *patterns* différents qui, quelle que soit la position de l'erreur, me permettent de la localiser à coup sûr. Voici 7 *patterns* qui remplissent ces conditions :
+Il faudrait que ma 130e question soit *Quel est le premier bit de la position de mon erreur encodée en binaire ?*... En se rappelant que ces 7 questions doivent être "universelles" car je ne connaîtrai pas le nombre que je pense être le nombre secret au moment de les poser. En fait il me faudrait 7 *patterns* pour lesquels je vérifierais si les bits désignés sont identiques ou non entre ma version et celle du serveur. 7 *patterns* différents qui, quelle que soit la position de l'erreur, me permettent de la localiser à coup sûr. Voici 7 *patterns* qui remplissent ces conditions :
 
 ```
 11111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000
@@ -114,7 +114,7 @@ Il faudrait que ma 130e question soit *Quel est le premier bit de la position de
 10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
 ```
 
-En regardant bien, j'ai écrit tous les nombre de 0 à 127 en binaire et en colonne. Si par exemple le premier pattern renvoie une réponse différente de celle que je peux calculer sur le nombre que je pense être la solution, que le 2e masque donne une somme de contrôle identique sur le nombre du serveur et le mien, que le 3e pattern donne une parité différente et tous les autres une parité identique. Cela signifiera que la position de mon erreur est situé à la position `1010000`  soit 80. J'aurai donc à inversé le 80e bit.
+En regardant bien, j'ai écrit tous les nombre de 127 à 0 en binaire et en colonne. Si par exemple le premier pattern renvoie une réponse différente de celle que je peux calculer sur le nombre que je pense être la solution, que le 2e masque donne une somme de contrôle identique sur le nombre du serveur et le mien, que le 3e pattern donne une parité différente et tous les autres une parité identique. Cela signifiera que la position de mon erreur est situé à la position `1010000`  soit 80. J'aurai donc à inverser le 80e bit.
 
 
 
@@ -259,7 +259,7 @@ Pour résumer, voici les 136 nombres que je vais envoyer au serveur (en binaire)
 10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
 ```
 
-Le 1er sert de référence, les 128 suivants interrogent les 128 bits du nombre secret et les 7 derniers demandent une info qui me permettra de localiser le bit erroné.
+Le 1er sert de référence (on suppose que le mensonge n'intervient pas à ce moment-là), les 128 suivants interrogent les 128 bits du nombre secret et les 7 derniers demandent une info qui me permettra de localiser le bit erroné.
 
 
 
@@ -310,7 +310,7 @@ for _ in range(K):
         else:
             ans = "0"+ans
     print(ans)
-    show = int(ans, 2)
+    show = int(ans, 2) # le serveur nous "montre" ce nombre
 
     if w(show) != ref:  # si la somme de contrôle est identique alors le serveur n'a pas menti sur les 129 premières réponses
         test = [ w(m & show) for m in M[129:]]  # j'applique mes 7 dernières questions au nombre que je pense
@@ -332,6 +332,8 @@ for _ in range(K):
 
 conn.interactive()
 ```
+
+Le programme joue ses 32 parties... Et affiche le flag : `FCSC{e055ea6ffd540907c52a34bef47cbf79758e6732af597d98c33aceade78979c5}`
 
 
 

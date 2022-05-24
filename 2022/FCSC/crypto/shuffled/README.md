@@ -42,7 +42,7 @@ Rien de bien compliqué : on initialise random avec une seed entre 0 et 256 puis
 
 ### Résolution
 
-Il va falloir comprendre comment fonctionne `random.shuffle` pour faire la fonction inverse pour une seed donnée. Pour cela pas besoin de regarder le code de random, il suffier de créer une liste d'éléments numérotés dans l'ordre, de la *shuffle* et on a une map qui décrit comment faire l'opération inverse. On fait cela pour les 257 possibilités et comme on sait que le flag commence  forcément par `FCSC{` il ne devrait pas y avoir 36 000 possibilités :
+Il va falloir comprendre comment fonctionne `random.shuffle` pour faire la fonction inverse pour une seed donnée. Pour cela pas besoin de regarder le code de random, il suffier de créer une liste d'éléments numérotés dans l'ordre, de la *shuffle* et on a une map qui décrit comment faire l'opération inverse. On fait cela pour les 257 possibilités et comme on sait que le flag commence  forcément par `FCSC{` il devrait y avoir peu de solutions :
 
 ```python
 import random
@@ -63,3 +63,4 @@ for s in range(257):
         print("".join(flag))
 ```
 
+En effet, une seule chaîne de caractère est print :  `FCSC{d93d32485aec7dc7622f13cd93b922363911c36d2ffd4f829f4e3264d0ac6952}`

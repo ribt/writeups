@@ -51,7 +51,7 @@ On tombe rapidement sur ces deux liens :
 - https://bugs.python.org/issue34751
 - https://stackoverflow.com/questions/49722196/how-does-python-compute-the-hash-of-a-tuple
 
-Le 1er se plaint que la collision est trop facile et le 2e contient une réponse qui pointe vers le code C qui calcule le hash d'un tuple ! Cependant on voit que le lien pointe vers la branche `3.7` alors que le header de notre fichier indique clairement que c'est la version `3.9` qui est utlisée. Nous regardons donc [le code sur cette branche](https://github.com/python/cpython/blob/3.9/Objects/tupleobject.c#L359) et il a en effet subi d'importantes modifications par rapport à la 3.7 pour rendre les collisions plus difficiles.
+Le 1er se plaint que la collision est trop facile et le 2e contient une réponse qui pointe vers le code C qui calcule le hash d'un tuple ! Cependant on voit que le lien pointe vers la branche `3.7` alors que le [shebang](https://fr.wikipedia.org/wiki/Shebang) de notre fichier indique clairement que c'est la version `3.9` qui est utilisée. Nous regardons donc [le code sur cette branche](https://github.com/python/cpython/blob/3.9/Objects/tupleobject.c#L359) et il a en effet subi d'importantes modifications par rapport à la 3.7 pour rendre les collisions plus difficiles.
 
 Voici un extrait du code :
 
@@ -156,7 +156,7 @@ from z3 import *
 a, b = BitVecs("a b", 64)
 s = Solver()
 
-challenge = 6422662251806978451  # récupérer le challenge avec netcat
+challenge = 6422662251806978451  # TODO: récupérer le challenge avec netcat
 if challenge < 0:
     challenge += 2**64
 
@@ -258,13 +258,11 @@ for b in range(999999):
     if hash(a) == a:
         break
 conn.recvuntil(b">>> ")
-conn.send(str(a)+"\n")
+conn.send(str(a).encode()+b"\n")
 conn.recvuntil(b">>> ")
-conn.send(str(b)+"\n")
+conn.send(str(b).encode()+b"\n")
 flag = bytes(map(int, conn.recvline().decode().strip()[1:-1].split(", ")))
 print(flag[16:].decode())
 ```
 
-
-
-J'aurais bien aimé faire un 
+flag : `FCSC{658232b18ebebc53c42dd373c6e9bc788f1fd5693cf8a45bcafbff46dae42e24}`
