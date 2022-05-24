@@ -1,0 +1,107 @@
+https://gist.github.com/woodrow/cb1496975e131e37d5dd716127a250a4
+https://fidoalliance.org/wp-content/uploads/U2F-FIDO_Czeskis.pdf
+https://neowave.fr/pdfs/FIDO-U2F-CHEAT-SHEET.pdf
+https://fidoalliance.org/specs/fido-u2f-v1.2-ps-20170411/fido-u2f-raw-message-formats-v1.2-ps-20170411.html
+
+
+AUTHENTICATE :
+packet identiques :
+- 20*, 28, (36), 56*, (64)
+- 84*, (92), 112*, (120), 140*, (148)
+- 172, 184, (196), (220), (268), (292), 316, (328)
+- (244)
+* -> check-only
+() -> réponse OK
+
+
+packet 40 (réponse 36):
+user presence : 01
+counter : 00 00 00 00
+signature : 30460221009683e1a139967409c2873dfdf65f770545858ea37b362bb28b12d6d38cccf442022100dcd87355102194001255c534f40737a56b147a9b40dc9f3594388627fc28195d
+
+packet 68 (réponse 64):
+01
+00 00 00 00
+30450220463b9703f81c223e408e3eeb0819a42f59c3a3d05d73a0bd46a3a37d606937ab022100ba32a0969085c17a55fc210d9904402dc79aa3fb6e3a4bd89aaccff9d393123a
+
+p96 (réponse 92):
+01
+00 00 00 00
+304502206f1bfc402fe8911cdc9a92ecc7131eeba31706cec4810d8e60ef759d1e87426c022100ca292479b5c442677945306e3fcd175e87577c9e45d8c6a3df5d4bb0009740c3
+
+p124 (rep 120):
+01
+00000000
+3044022050acfd22ab96e97ef49de4ff5c12f14dd1db993e6c624a42ab27d941d6808a4d0220537b989a102b228b51175010f38eaa4d550a9cafbc14110ffda2e3908c2fc5b0
+
+p152 (rep 148):
+01
+00000000
+3046022100f60af84cfc0f3d9f33ae8ad04b617ab7cf782f70cd083a71aad738b4e75d51c0022100b43a629349cea13415263b86a1afc637cd4c92dc8673a360577311710582f9da
+
+
+
+packet authentification 20, 28, 36, 56, 64 :
+chall param : 9e5e67419d90aa711dda3c361678a4cd8ddf835051bc7369ccf14bf9da7bcfb3
+app param : c7da97444c4f3a69fe6d8b637827053df077f278f80a3901e370264a1ed88102 = sha256(https://x-factor.france-cybersecurity-challenge.fr)
+key handle length : 40
+key handle : 3225c40978c46f10007bb40e1f682c88d88aedb5deb862672d418eee46c9bad74e0d9beea95f93d533e94d511522bca799273234e8d06910148b43d21fc2d4b5
+
+
+packets 84, 92, 112, 120, 140, 148 :
+chall : 8736c5b6cb8b27617a7ccbec9f599ba460eefee042fe25b9b2a673bf43ddb1e8
+app : c7da97444c4f3a69fe6d8b637827053df077f278f80a3901e370264a1ed88102
+40
+key handle : 3225c40978c46f10007bb40e1f682c88d88aedb5deb862672d418eee46c9bad74e0d9beea95f93d533e94d511522bca799273234e8d06910148b43d21fc2d4b5
+
+packets 172, 184, 196, 220, 268, 292, 316, 328:
+chall : aceace725b0a75cddbd8945583451980e3b304fc5e203c9638c63f4d5503e78e
+app : c7da97444c4f3a69fe6d8b637827053df077f278f80a3901e370264a1ed88102
+40
+key handle : 3225c40978c46f10007bb40e1f682c88d88aedb5deb862672d418eee46c9bad74e0d9beea95f93d533e94d511522bca799273234e8d06910148b43d21fc2d4b5
+
+
+packet 224 :
+chall : e5aa47aebfb3c0e605103dac466f1495bdd01a2dd2cc0f4f093890114890efd8
+app : c7da97444c4f3a69fe6d8b637827053df077f278f80a3901e370264a1ed88102
+40
+key handle : 3225c40978c46f10007bb40e1f682c88d88aedb5deb862672d418eee46c9bad74e0d9beea95f93d533e94d511522bca799273234e8d06910148b43d21fc2d4b5
+
+
+reçu du serveur :
+{"version":"U2F_V2","appId":"https://x-factor.france-cybersecurity-challenge.fr","keyHandle":"MiXECXjEbxAAe7QOH2gsiNiK7bXeuGJnLUGO7kbJutdODZvuqV-T1TPpTVEVIrynmScyNOjQaRAUi0PSH8LUtQ","challenge":"L8tsCkDErRPzV9SAOlOj2JzFMXAOjmUs7JnimkH9_gI"}
+
+{"version":"U2F_V2","appId":"https://x-factor.france-cybersecurity-challenge.fr","keyHandle":"MiXECXjEbxAAe7QOH2gsiNiK7bXeuGJnLUGO7kbJutdODZvuqV-T1TPpTVEVIrynmScyNOjQaRAUi0PSH8LUtQ","challenge":"D5CxgaFPGIQu5fGYPEjo-YA9Dqd6y2PBoWP6p56TpFw"}
+  
+appId et keyHandle identiques
+
+
+EDIT:
+
+{"version":"U2F_V2","appId":"https://x-factor.france-cybersecurity-challenge.fr","keyHandle":"MiXECXjEbxAAe7QOH2gsiNiK7bXeuGJnLUGO7kbJutdODZvuqV-T1TPpTVEVIrynmScyNOjQaRAUi0PSH8LUtQ","challenge":"L8tsCkDErRPzV9SAOlOj2JzFMXAOjmUs7JnimkH9_gI"}
+->
+sha256('{"challenge":"L8tsCkDErRPzV9SAOlOj2JzFMXAOjmUs7JnimkH9_gI","origin":"https://x-factor.france-cybersecurity-challenge.fr","typ":"navigator.id.getAssertion"}')
+= 8736c5b6cb8b27617a7ccbec9f599ba460eefee042fe25b9b2a673bf43ddb1e8
+= chall packets 84, 92, 112, 120, 140, 148
+
+REPONSE : {"clientData": "eyJjaGFsbGVuZ2UiOiJMOHRzQ2tERXJSUHpWOVNBT2xPajJKekZNWEFPam1VczdKbmlta0g5X2dJIiwib3JpZ2luIjoiaHR0cHM6Ly94LWZhY3Rvci5mcmFuY2UtY3liZXJzZWN1cml0eS1jaGFsbGVuZ2UuZnIiLCJ0eXAiOiJuYXZpZ2F0b3IuaWQuZ2V0QXNzZXJ0aW9uIn0", "keyHandle": "MiXECXjEbxAAe7QOH2gsiNiK7bXeuGJnLUGO7kbJutdODZvuqV-T1TPpTVEVIrynmScyNOjQaRAUi0PSH8LUtQ", "signatureData": "AQAAAAAwRgIhAPYK-Ez8Dz2fM66K0EtherfPeC9wzQg6carXOLTnXVHAAiEAtDpik0nOoTQVJjuGoa_GN81MktyGc6NgV3MRcQWC-do"}
+
+
+{"version":"U2F_V2","appId":"https://x-factor.france-cybersecurity-challenge.fr","keyHandle":"MiXECXjEbxAAe7QOH2gsiNiK7bXeuGJnLUGO7kbJutdODZvuqV-T1TPpTVEVIrynmScyNOjQaRAUi0PSH8LUtQ","challenge":"D5CxgaFPGIQu5fGYPEjo-YA9Dqd6y2PBoWP6p56TpFw"}
+-> 9e5e67419d90aa711dda3c361678a4cd8ddf835051bc7369ccf14bf9da7bcfb3
+-> packet authentification 20, 28, 36, 56, 64
+
+
+
+packet 40 (réponse 36):
+user presence : 01
+counter : 00 00 00 00
+signature : 30460221009683e1a139967409c2873dfdf65f770545858ea37b362bb28b12d6d38cccf442022100dcd87355102194001255c534f40737a56b147a9b40dc9f3594388627fc28195d
+
+
+01
+00 00 00 00 
+3046022100f60af84cfc0f3d9f33ae8ad04b617ab7cf782f70cd083a71aad738b4e75d51c0022100b43a629349cea13415263b86a1afc637cd4c92dc8673a360577311710582f9da
+
+
+Flag: FCSC{17a5e88a2edef149db8baa502580e49567ae496f09e22b277b5c0959bb16c07b}
